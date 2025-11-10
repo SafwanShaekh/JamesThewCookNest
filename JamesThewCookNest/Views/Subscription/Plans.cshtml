@@ -1,0 +1,63 @@
+﻿@model bool  //Model tells if user is already subscribed or not//
+
+@{
+    ViewData["Title"] = "Choose a Subscription Plan";
+}
+
+<h2 class="text-center mb-4">Choose Your Subscription Plan</h2>
+
+@if (Model)
+{
+    <div class="alert alert-success text-center">
+        ✅ You already have an active subscription.
+    </div>
+}
+else
+{
+    <div class="row justify-content-center">
+        <!-- Monthly Plan Card -->
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-header bg-primary text-white">
+                    Monthly Plan
+                </div>
+                <div class="card-body">
+                    <h3>$10 / month</h3>
+
+                    <form method="post" asp-action="Subscribe">
+                        <!-- ✅ Dummy card number (not saved in DB) -->
+                        <input required maxlength="16" name="cardnumber"
+                               class="form-control mb-2" placeholder="16-Digit Card Number" />
+
+                        <input type="hidden" name="planName" value="Monthly" />
+                        <button type="submit" class="btn btn-primary">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Annual Plan Card -->
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-header bg-success text-white">
+                    Annual Plan
+                </div>
+                <div class="card-body">
+                    <h3>$100 / year</h3>
+
+                    <form method="post" asp-action="Subscribe">
+                        <input required maxlength="16" name="cardnumber"
+                               class="form-control mb-2" placeholder="16-Digit Card Number" />
+
+                        <input type="hidden" name="planName" value="Annual" />
+                        <button type="submit" class="btn btn-success">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
